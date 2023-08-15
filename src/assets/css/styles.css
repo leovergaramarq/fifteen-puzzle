@@ -12,6 +12,11 @@ body {
   align-items: center;
   gap: 1rem;
 }
+* {
+  letter-spacing: 0.1rem;
+  box-sizing: border-box;
+  margin: 0;
+}
 .btn {
   cursor: pointer;
 }
@@ -28,6 +33,16 @@ body {
   background-color: #d18238;
   color: #fdf4cc;
 }
+.img-cont {
+  position: relative;
+}
+.img-cont img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
 .title {
   margin-top: 1rem;
   text-align: center;
@@ -36,25 +51,28 @@ body {
   letter-spacing: 0.3rem;
 }
 main {
-  margin-top: 1rem;
   display: flex;
   gap: 1rem;
 }
 main .table {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
   border: 4px solid #7c3309;
   border-radius: 10px;
   background-color: #7c3309;
-  gap: 1px;
 }
 main .table .tile {
   user-select: none;
+  flex-basis: 24%;
+  padding-top: 3%;
+  padding-bottom: 3%;
 }
 main .table .tile:not(.tile-16) {
   border-radius: 10px;
   background-color: #fdf4cc;
-  border: 1px solid #7c3309;
+  border: 2px solid #7c3309;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -65,9 +83,23 @@ main .table .tile:not(.tile-16):hover {
   background-color: #d18238;
   color: #fdf4cc;
 }
+main .game {
+  padding-bottom: 2rem;
+}
+main .game .undo-redo {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+main .game .undo-redo * {
+  width: 50px;
+  height: 60px;
+  cursor: pointer;
+}
+main .game .undo-redo *:hover {
+  scale: 1.05;
+}
 main .game .table .tile {
-  height: 100px;
-  width: 100px;
   font-size: 2rem;
 }
 main .game .table .tile:not(.tile-16) {
@@ -127,6 +159,9 @@ main .game .actions {
   justify-content: center;
   gap: 1rem;
 }
+main .guide {
+  margin-top: 2rem;
+}
 main .guide-title {
   font-size: 1.3rem;
 }
@@ -134,8 +169,6 @@ main .guide .table {
   margin-top: 0.5rem;
 }
 main .guide .table .tile {
-  height: 40px;
-  width: 40px;
   font-size: 1.3rem;
   cursor: default;
 }
