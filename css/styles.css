@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'Bangers';
-  src: url("../fonts/Bangers-Regular.ttf");
+  src: url("../assets/fonts/Bangers-Regular.ttf");
 }
 body {
   font-family: 'Bangers';
@@ -11,6 +11,7 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 1rem;
+  min-height: 100vh;
 }
 * {
   letter-spacing: 0.1rem;
@@ -50,11 +51,19 @@ body {
   font-weight: bold;
   letter-spacing: 0.3rem;
 }
+@media screen and (max-width: 900px) {
+  .title {
+    font-size: 3rem;
+  }
+}
 main {
   display: flex;
   gap: 1rem;
 }
-main .table {
+main .content {
+  position: relative;
+}
+main .content .table {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -63,13 +72,11 @@ main .table {
   border-radius: 10px;
   background-color: #7c3309;
 }
-main .table .tile {
+main .content .table .tile {
   user-select: none;
-  flex-basis: 24%;
-  padding-top: 3%;
-  padding-bottom: 3%;
+  width: 25%;
 }
-main .table .tile:not(.tile-16) {
+main .content .table .tile:not(.tile-16) {
   border-radius: 10px;
   background-color: #fdf4cc;
   border: 2px solid #7c3309;
@@ -79,103 +86,141 @@ main .table .tile:not(.tile-16) {
   font-weight: bold;
   color: #333;
 }
-main .table .tile:not(.tile-16):hover {
+main .content .table .tile:not(.tile-16):hover {
   background-color: #d18238;
   color: #fdf4cc;
 }
-main .game {
-  padding-bottom: 2rem;
-}
-main .game .undo-redo {
+main .content .game .undo-redo {
   display: flex;
   justify-content: center;
   gap: 2rem;
 }
-main .game .undo-redo * {
+main .content .game .undo-redo * {
   width: 50px;
   height: 60px;
   cursor: pointer;
 }
-main .game .undo-redo *:hover {
+main .content .game .undo-redo *:hover {
   scale: 1.05;
 }
-main .game .table .tile {
+main .content .game .table.playable {
+  max-width: 80vw;
+}
+main .content .game .table.playable .tile {
+  height: 100px;
+  width: 25%;
   font-size: 2rem;
 }
-main .game .table .tile:not(.tile-16) {
+main .content .game .table.playable .tile:not(.tile-16) {
   cursor: pointer;
 }
-main .game .table .tile-1 {
+main .content .game .table.playable .tile-1 {
   order: 1;
 }
-main .game .table .tile-2 {
+main .content .game .table.playable .tile-2 {
   order: 2;
 }
-main .game .table .tile-3 {
+main .content .game .table.playable .tile-3 {
   order: 3;
 }
-main .game .table .tile-4 {
+main .content .game .table.playable .tile-4 {
   order: 4;
 }
-main .game .table .tile-5 {
+main .content .game .table.playable .tile-5 {
   order: 5;
 }
-main .game .table .tile-6 {
+main .content .game .table.playable .tile-6 {
   order: 6;
 }
-main .game .table .tile-7 {
+main .content .game .table.playable .tile-7 {
   order: 7;
 }
-main .game .table .tile-8 {
+main .content .game .table.playable .tile-8 {
   order: 8;
 }
-main .game .table .tile-9 {
+main .content .game .table.playable .tile-9 {
   order: 9;
 }
-main .game .table .tile-10 {
+main .content .game .table.playable .tile-10 {
   order: 10;
 }
-main .game .table .tile-11 {
+main .content .game .table.playable .tile-11 {
   order: 11;
 }
-main .game .table .tile-12 {
+main .content .game .table.playable .tile-12 {
   order: 12;
 }
-main .game .table .tile-13 {
+main .content .game .table.playable .tile-13 {
   order: 13;
 }
-main .game .table .tile-14 {
+main .content .game .table.playable .tile-14 {
   order: 14;
 }
-main .game .table .tile-15 {
+main .content .game .table.playable .tile-15 {
   order: 15;
 }
-main .game .table .tile-16 {
+main .content .game .table.playable .tile-16 {
   order: 16;
 }
-main .game .actions {
+main .content .game .actions {
   margin-top: 1rem;
   display: flex;
   justify-content: center;
   gap: 1rem;
 }
-main .guide {
-  margin-top: 2rem;
+main .content .guide {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translateX(-100%);
+  margin: 2rem 0 0 -1rem;
+  z-index: 40;
 }
-main .guide-title {
-  font-size: 1.3rem;
+@media screen and (max-width: 900px) {
+  main .content .guide {
+    padding: 20px;
+    top: unset;
+    bottom: 0;
+    transform: translateY(100%);
+    margin: 0 0 -2rem -1rem;
+  }
 }
-main .guide .table {
+main .content .guide-title {
+  font-size: 1.2rem;
+}
+main .content .guide .table {
+  max-width: 200px;
   margin-top: 0.5rem;
 }
-main .guide .table .tile {
-  font-size: 1.3rem;
+@media screen and (max-width: 900px) {
+  main .content .guide .table {
+    max-width: 128px;
+  }
+}
+main .content .guide .table .tile {
+  font-size: 1.2rem;
+  height: 50px;
+  width: 25%;
   cursor: default;
 }
-main .stats {
-  margin: 2rem 0 0 1rem;
+main .content .stats {
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: translateX(100%);
+  z-index: 40;
+  margin: 4rem -1rem 0 0;
   display: flex;
   flex-direction: column;
   gap: 1rem;
   font-size: 1.3rem;
+}
+@media screen and (max-width: 900px) {
+  main .content .stats {
+    padding: 20px;
+    top: unset;
+    bottom: 0;
+    transform: translateY(100%);
+    margin: 0 -1rem -2rem 0;
+  }
 }
