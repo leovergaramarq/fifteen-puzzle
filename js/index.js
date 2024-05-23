@@ -129,7 +129,7 @@ window.addEventListener(
       const newRecord = checkNewRecord();
       setTimeout(() => {
         alert(`You won! ${newRecord ? `New record! ${record}` : ""}`);
-      }, 0);
+      }, 100);
     }
 
     function checkNewRecord() {
